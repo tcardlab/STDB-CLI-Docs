@@ -4,8 +4,9 @@
   "description": "Generates Docs for SpacetimeDB CLI",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "node index build",
     "build": "node index build",
+    "dev": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",

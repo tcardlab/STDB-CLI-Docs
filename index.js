@@ -67,7 +67,7 @@ async function recursiveDocs(commandNames, depth=0, parents=[]) {
 
 function createFile(content) {
   if (process.argv.includes('build')) {
-    fs.writeFile('docs.md', content, 'utf8', (err) => {
+    fs.writeFile('README.md', content, 'utf8', (err) => {
       if (err) console.error('Error writing the edited content to the file:', err)
       console.log('File edited successfully.');
     })
@@ -106,7 +106,11 @@ function generateDetails(command) {
 
   
   // format cmdObj to content
-  let content = ''
+  let content = `# STDB-CLI-Docs\n\nGenerates Docs for SpacetimeDB CLI\n\n Assuming STDB is already installed, \`npm start\` `
+
+  let version_info = execSync('spacetime version').toString()
+  content += '\n\n> **Current Version**<br/>\n'+version_info.replace(/^Path(.*?)\n/, '').replace('\n','<br/>').replaceAll(/^/g, '> ')
+
   for (let [k, v] of Object.entries(cmdObj)) {
     content += generateDetails(v)
   }
